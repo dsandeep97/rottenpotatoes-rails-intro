@@ -14,6 +14,25 @@
  *= require_self
  */
 
+table#movies th {
+  background-color: bisque;
+  border: 2px solid white;
+}
+
 table#movies th.hilite {
   background-color: yellow;
+}
+
+h2 {
+  color: maroon;
+  font-style: italic;
+}
+
+input#ratings_submit {
+  border-radius: 40px;
+  margin-left: 5px;
+}
+
+a {
+  text-decoration: underline;
 }
