@@ -11,11 +11,30 @@ class MoviesController < ApplicationController
   end
 
   def index
-    @all_ratings = Movie.uniq.pluck(:rating)
+    redirect_page = false
+    if params[:sort_criteria]
+        session[:sort_criteria] = params[:sort_criteria]
+    elsif session[:sort_criteria]
+        redirect_page = true
+        params[:sort_criteria] = session[:sort_criteria]
+    end
 
+    @all_ratings = Movie.uniq.pluck(:rating)
     @checked_ratings = @all_ratings
+    if params[:ratings]
+        session[:ratings] = params[:ratings]
+    elsif session[:ratings]
+        redirect_page = true
+        params[:ratings] = session[:ratings]
+    end
+
     if params[:ratings] != nil
         @checked_ratings = params[:ratings].keys
+    end
+
+    if redirect_page
+        flash.keep
+        redirect_to movies_path(:sort_criteria => session[:sort_criteria], :ratings => session[:ratings])
     end
 
     @movies = Movie.with_ratings(@checked_ratings).order(params[:sort_criteria])
