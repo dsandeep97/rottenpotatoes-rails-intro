@@ -1,0 +1,2 @@
+GitHub URL: https://github.com/dsandeep97/rottenpotatoes-rails-intro
+Heroku app: http://vast-reaches-38391.herokuapp.com/
